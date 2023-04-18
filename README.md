@@ -15,7 +15,7 @@ You can modify the "schedule_str" field in the task object to set different sche
 ### **For a one-time task:**
 
 ```json
-task = {
+{
     "task_name": "One-time task",
     "Action": "RunCommand",
     "args": "echo 'Hello, world!'",
@@ -26,7 +26,7 @@ task = {
 ### **For a daily task:**
 
 ```json
-task = {
+{
     "task_name": "Daily task",
     "Action": "RunCommand",
     "args": "echo 'Good morning!'",
@@ -37,7 +37,7 @@ task = {
 ### **For a weekly task:**
 
 ```json
-task = {
+{
     "task_name": "Weekly task",
     "Action": "RunCommand",
     "args": "echo 'Happy Monday!'",
@@ -48,7 +48,7 @@ task = {
 ### **For a monthly task:**
 
 ```json
-task = {
+{
     "task_name": "Monthly task",
     "Action": "RunCommand",
     "args": "echo 'Happy first of the month!'",
