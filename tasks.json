@@ -1,14 +1,31 @@
 [
   {
-    "task_name": "Open VSCode",
+    "task_name": "Open VS code",
     "Action": "openApp",
-    "args": "C:\\Users\\Kamran\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe",
-    "schedule": "06:24"
+    "args": "C://Program Files//Microsoft VS Code//Code.exe",
+    "schedule": {
+      "type": "daily",
+      "time": "09:00"
+    }
   },
   {
-    "task_name": "Update all apps",
+    "task_name": "Open YouTube",
+    "Action": "openUrl",
+    "args": "https://www.youtube.com/",
+    "schedule": {
+      "type": "date",
+      "date": "2023-04-18",
+      "time": "15:06"
+    }
+  },
+  {
+    "task_name": "Run a script",
     "Action": "runCommand",
-    "args": "winget upgrade --all",
-    "schedule": "06:25"
+    "args": "python script.py",
+    "schedule": {
+      "type": "date",
+      "date": "2023-04-22",
+      "time": "11:00"
+    }
   }
 ]

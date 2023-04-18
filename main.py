@@ -5,13 +5,17 @@ import schedule
 import subprocess
 import time
 import logging
+import datetime
 
 # Set up logging
 logging.basicConfig(filename='tasks.log', level=logging.INFO,
                     format='%(asctime)s %(levelname)s: %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
 
 
-def openApp(args):
+def openApp(args, target_date=None):
+    current_date = datetime.date.today()
+    if target_date is not None and current_date != target_date:
+        return
     try:
         path = args
         subprocess.call([path])
@@ -20,7 +24,10 @@ def openApp(args):
         logging.error(f'Could not open app "{args}"')
 
 
-def openUrl(args):
+def openUrl(args, target_date=None):
+    current_date = datetime.date.today()
+    if target_date is not None and current_date != target_date:
+        return
     try:
         webbrowser.open(args)
         logging.info(f'Opened URL "{args}"')
@@ -28,7 +35,10 @@ def openUrl(args):
         logging.error(f'Could not open URL "{args}": {e}')
 
 
-def runCommand(args):
+def runCommand(args, target_date=None):
+    current_date = datetime.date.today()
+    if target_date is not None and current_date != target_date:
+        return
     try:
         os.system(args)
         logging.info(f'Executed command "{args}"')
@@ -43,18 +53,24 @@ def schedule_tasks():
             task_name = task['task_name']
             Action = task['Action']
             args = task['args']
-            schedule_str = task['schedule']
-
+            schedule_obj = task['schedule']
+            schedule_type = schedule_obj['type']
+            schedule_time = schedule_obj['time']
+            
             # Get the function object based on its name
             function = globals().get(Action)
 
             # Schedule the task
             try:
-                schedule.every().day.at(schedule_str).do(function, args)
+                if schedule_type == 'daily':
+                    schedule.every().day.at(schedule_time).do(function, args)
+                elif schedule_type == 'date':
+                    schedule_date_time = datetime.datetime.strptime(schedule_obj['date'] + ' ' + schedule_obj['time'], '%Y-%m-%d %H:%M')
+                    schedule.every().day.at(schedule_time).do(function, args, target_date=schedule_date_time.date())
                 logging.info(
-                    f'Scheduled task "{task_name}" to run at {schedule_str}')
+                    f'Scheduled task "{task_name}" to run at {schedule_time} ({schedule_type})')
             except Exception as e:
-                logging.error(f'Error scheduling task "{task_name}": {e}')
+                logging.error(f'scheduling task "{task_name}": {e}')
 
     # Keep the scheduler running
     while True:
