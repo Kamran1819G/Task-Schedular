@@ -1,0 +1,8 @@
+[
+  {
+    "task_name": "Open VSCode",
+    "function": "open_app",
+    "args": "C:\\Users\\Kamran\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe",
+    "schedule": "06:03"
+  }
+]
