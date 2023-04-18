@@ -1,8 +1,14 @@
 [
   {
     "task_name": "Open VSCode",
-    "function": "open_app",
+    "Action": "openApp",
     "args": "C:\\Users\\Kamran\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe",
-    "schedule": "06:03"
+    "schedule": "06:24"
+  },
+  {
+    "task_name": "Update all apps",
+    "Action": "runCommand",
+    "args": "winget upgrade --all",
+    "schedule": "06:25"
   }
 ]
