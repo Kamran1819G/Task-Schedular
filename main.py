@@ -7,9 +7,7 @@ import time
 import logging
 import datetime
 
-# Set up logging
-logging.basicConfig(filename='tasks.log', level=logging.INFO,
-                    format='%(asctime)s %(levelname)s: %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+logging.basicConfig(filename='tasks.log', level=logging.INFO,format='%(asctime)s %(levelname)s: %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
 
 
 def openApp(args, target_date=None):
@@ -17,8 +15,7 @@ def openApp(args, target_date=None):
     if target_date is not None and current_date != target_date:
         return
     try:
-        path = args
-        subprocess.call([path])
+        subprocess.call(args)
         logging.info(f'Opened app "{args}"')
     except FileNotFoundError:
         logging.error(f'Could not open app "{args}"')
