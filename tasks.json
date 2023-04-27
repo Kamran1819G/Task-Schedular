@@ -1,11 +1,11 @@
 [
   {
-    "task_name": "Open VS code",
+    "task_name": "Open Notepad",
     "Action": "openApp",
-    "args": "C://Program Files//Microsoft VS Code//Code.exe",
+    "args": "notepad.exe",
     "schedule": {
       "type": "daily",
-      "time": "09:00"
+      "time": "23:47"
     }
   },
   {

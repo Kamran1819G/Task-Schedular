@@ -52,16 +52,17 @@ def schedule_tasks():
             args = task['args']
             schedule_obj = task['schedule']
             schedule_type = schedule_obj['type']
-            schedule_time = schedule_obj['time']
             
             # Get the function object based on its name
             function = globals().get(Action)
 
             # Schedule the task
             try:
-                if schedule_type == 'daily':
+                if schedule_type == 'daily':    
+                    schedule_time = schedule_obj['time']
                     schedule.every().day.at(schedule_time).do(function, args)
                 elif schedule_type == 'date':
+                    schedule_time = schedule_obj['time']
                     schedule_date_time = datetime.datetime.strptime(schedule_obj['date'] + ' ' + schedule_obj['time'], '%Y-%m-%d %H:%M')
                     schedule.every().day.at(schedule_time).do(function, args, target_date=schedule_date_time.date())
                 logging.info(
