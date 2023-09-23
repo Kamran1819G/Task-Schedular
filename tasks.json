@@ -5,7 +5,7 @@
     "args": "notepad.exe",
     "schedule": {
       "type": "daily",
-      "time": "23:47"
+      "time": "17:10"
     }
   },
   {
